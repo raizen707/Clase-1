@@ -21,7 +21,7 @@ print("Habilidades:", Habilidades)
 #Ejemplo de Juego COD
 #Metodos o funciones , algoritmos
 def validar_hardware(cpu: str, ram: int, gpu: str, almacenamiento: int, 
-                     es_gaming: bool, os: str, npu: bool, es_paraIA: bool) -> None:
+                     es_gaming: bool, os: str, npu: bool, es_paraIA: bool, modelos_ia: list) -> None:
     print("Validando hardware...")
     if cpu in ["Intel i7-14700K", "AMD Ryzen 9 7900X"]:
         print("El CPU es adecuado.")
@@ -86,6 +86,15 @@ def Menu() -> None:
     opcion_os = input("Seleccione una opción (1-3): ")
     os_nombre = retornar_os(opcion_os)
     print("Sistema Operativo seleccionado:", os_nombre)
+    if es_paraIA:
+        cantidad_modelos_ia = int(input("¿Cuántos modelos de IA desea usar? "))
+        modelos_ia = []
+        for i in range(cantidad_modelos_ia):
+            menu_modelos_ia()
+            opcion_modelos_ia = input(f"Seleccione el modelo de IA #{i+1} (1-7): ")
+            modelo_ia_nombre = retornar_modelos_ia(opcion_modelos_ia)
+            print(f"Modelo de IA #{i+1} seleccionado:", modelo_ia_nombre)
+            modelos_ia.append(modelo_ia_nombre)
 
     validar_hardware(
         cpu=cpu_nombre,
@@ -95,7 +104,8 @@ def Menu() -> None:
         es_gaming=es_gaming,
         os=os_nombre,
         npu=True,
-        es_paraIA=es_paraIA
+        es_paraIA=es_paraIA,
+        modelos_ia=modelos_ia
     )
 def menu_os() -> None:
     print("1. Windows 11")
@@ -133,4 +143,26 @@ def retornar_gpu(opcion_gpu: str) -> str:
         "3": "Intel Iris Xe"
     }
     return gpu_dict.get(opcion_gpu, "Opción inválida")
+
+def menu_modelos_ia() -> None:
+    print("1. GPT-5")
+    print("2. Claude")
+    print("3. Llama 4")
+    print("4. Gemini 1.5")
+    print("5. Mistral 7B")
+    print("6. Falcon 180B")
+    print("7. Cerebras-GPT 111B")
+
+def retornar_modelos_ia(opcion_modelos_ia: str) -> str:
+    modelos_ia_dict = {
+        "1": "GPT-5",
+        "2": "Claude",
+        "3": "Llama 4",
+        "4": "Gemini 1.5",
+        "5": "Mistral 7B",
+        "6": "Falcon 180B",
+        "7": "Cerebras-GPT 111B"
+    }
+    return modelos_ia_dict.get(opcion_modelos_ia, "Opción inválida")
+
 Menu()

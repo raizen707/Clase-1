@@ -19,11 +19,12 @@ print("Habilidades:", Habilidades)
 #Algororitmo -> secuencia de pasos para resolver un problema
 
 #Ejemplo de Juego COD
-
 #Metodos o funciones , algoritmos
 def validar_hardware(cpu: str, ram: int, gpu: str, almacenamiento: int, 
                      es_gaming: bool, os: str, npu: bool, es_paraIA: bool) -> None:
     print("Validando hardware...")
+    if cpu in ["Intel i7-14700K", "AMD Ryzen 9 7900X"]:
+        print("El CPU es adecuado.")
     if es_gaming:
         if ram >= 16 and gpu in ["NVIDIA RTX 3060", "AMD RX 6600"]:
             if almacenamiento >= 512:

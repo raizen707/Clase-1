@@ -39,6 +39,10 @@ def validar_hardware(cpu: str, ram: int, gpu: str, almacenamiento: int,
             print("El hardware es adecuado para IA.")
             if almacenamiento >= 1024:
                 print("El almacenamiento es suficiente para IA.")
+                if os in ["Windows 11", "Linux Ubuntu"]:
+                    print("El sistema operativo es compatible con IA.")
+                if gpu in ["NVIDIA RTX 3060", "AMD RX 6600"]:
+                    print("La GPU es adecuada para IA.")
         else:
             print("El hardware no es adecuado para IA.")
     else:
@@ -82,6 +86,17 @@ def Menu() -> None:
     opcion_os = input("Seleccione una opción (1-3): ")
     os_nombre = retornar_os(opcion_os)
     print("Sistema Operativo seleccionado:", os_nombre)
+
+    validar_hardware(
+        cpu=cpu_nombre,
+        ram=ram,
+        gpu=gpu_nombre,
+        almacenamiento=almacenamiento,
+        es_gaming=es_gaming,
+        os=os_nombre,
+        npu=True,
+        es_paraIA=es_paraIA
+    )
 def menu_os() -> None:
     print("1. Windows 11")
     print("2. macOS Ventura")
